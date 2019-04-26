@@ -1,7 +1,6 @@
 package miaosha.demo.redis;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -98,8 +97,6 @@ public class RedisConfig {
         poolConfig.setMaxIdle(maxIdle);
         poolConfig.setMaxWaitMillis(maxWait * 1000);   //这里用的是毫秒
         JedisPool jp = new JedisPool(poolConfig, host, port,timeout * 1000, password,0);
-        log.info("JedisPool注入成功");
-        log.info("redis地址:" + host + ":" + port);
         return jp;
     }
 }

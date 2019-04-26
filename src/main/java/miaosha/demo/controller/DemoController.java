@@ -3,6 +3,7 @@ package miaosha.demo.controller;
 import lombok.extern.slf4j.Slf4j;
 import miaosha.demo.domain.User;
 import miaosha.demo.redis.RedisService;
+import miaosha.demo.redis.UserKey;
 import miaosha.demo.result.CodeMsg;
 import miaosha.demo.result.Result;
 import miaosha.demo.service.UserService;
@@ -56,17 +57,18 @@ public class DemoController {
 
     @RequestMapping("/redis/get")
     @ResponseBody
-    public Result<String> redisGet(){
-        log.info("运行到使用get方法前");
-        String v1 = redisService.get("key1",String.class);
-        return Result.success(v1);
+    public Result<User> redisGet(){
+        User user = redisService.get(UserKey.getById,"" + 1, User.class);
+        return Result.success(user);
     }
 
     @RequestMapping("/redis/set")
     @ResponseBody
     public Result<Boolean> redisSet(){
-        log.info("运行到使用set方法前");
-        boolean ret = redisService.set("key2","hello,idea");
+        User user = new User();
+        user.setId(1);
+        user.setName("小明");
+        boolean ret = redisService.set(UserKey.getById, "" + 1, user);  //UserKey:id1
         return Result.success(ret);
     }
 }
