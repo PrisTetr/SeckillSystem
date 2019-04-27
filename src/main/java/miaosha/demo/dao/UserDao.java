@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Select;
 public interface UserDao {
 
     @Select("select * from user where id = #{id}")   //这样写和写xml配置文件是一样的
-    public User getById(@Param("id") int id);
+    public User getById(@Param("id") long id);
 }

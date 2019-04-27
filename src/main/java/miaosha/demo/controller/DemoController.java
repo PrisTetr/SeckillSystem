@@ -66,8 +66,8 @@ public class DemoController {
     @ResponseBody
     public Result<Boolean> redisSet(){
         User user = new User();
-        user.setId(1);
-        user.setName("小明");
+      //  user.setId(1);
+       // user.setName("小明");
         boolean ret = redisService.set(UserKey.getById, "" + 1, user);  //UserKey:id1
         return Result.success(ret);
     }
